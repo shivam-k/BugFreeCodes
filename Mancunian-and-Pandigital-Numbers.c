@@ -3,40 +3,78 @@
 #include <math.h>
 #include <string.h>
 
-int find(int n)
+void display(int arr[], int n)
 {
-	int temp=n, count=0, i, arr[11];
-	while(temp>0)
+	int i;;
+	for(i=1; i<=n; i++)
+		printf("%d ", arr[i]);
+	printf("\n");
+}
+
+void find(int l, int r)
+{
+	int temp=l, countl=0, countr=0, i, arrl[11], arrr[11];
+	while(temp>0) //Calculating digits in l 
 	{
-		count++;
-		arr[count] = temp%10;
+		countl++;
+		//arrl[countl] = temp%10;
 		temp = temp/10;
 	}
-	for(i=1; i<=count; i++)
+	temp=r;
+	while(temp>0) //Calculating digits in r 
 	{
-		int min=arr[i];
-		for(int j=i; j<=count; j++)
-		{
-			if(arr[j]<min)
-			{
-				min=arr[j];
-				arr[j] = arr[i];
-				arr[i] = min;
-			}
-		}
+		countr++;
+		//arrr[countr] = temp%10;
+		temp = temp/10;
 	}
-	int pass=-1;
-	for(i=1; i<=count; i++)
+	if(countr<countl)
 	{
-		if(arr[i]==i)
-			pass=1;
-		else
-		{
-			pass=0; break;
-		}
+		temp=countr;
+		countr=countl;
+		countl=temp;
 	}
-	return pass;
+	for(i=1; i<=countr; i++)
+	{
+		if(i<=countl)
+			arrl[i]=i;
+		arrr[i]=i;
+	}
+	display(arrl, countl);
+	display(arrr, countr);
+	printf("\n");
+	for(i=1; i<=countl; i++)
+	{
+		
+	}
+	// int bug=1;
+	// while(bug>0)  //applying bubble sorting
+	// {
+	// 	bug=0;
+	// 	for(i=1; i<count; i++)
+	// 	{
+	// 		if(arr[i+1]<arr[i])
+	// 		{
+	// 			temp=arr[i+1];
+	// 			arr[i+1]=arr[i];
+	// 			arr[i]=temp;
+	// 			bug=1;
+	// 		}
+	// 	}
+	// }
+
+	// int pass=-1; 
+	// for(i=1; i<=count; i++)
+	// {
+	// 	if(arr[i]==i)
+	// 		pass=1;
+	// 	else
+	// 	{
+	// 		pass=0; break;
+	// 	}
+	// }
+	// return pass;
 }
+
 
 int main(void)
 {
@@ -46,12 +84,16 @@ int main(void)
 	{
 		int l, r, j, count=0;
 		scanf("%d %d", &l, &r);
-		for(j=l; j<=r; j++)
-		{
-			if(find(j)==1)
-				count++;
-		}
-		printf("%d\n", count);
+		// for(j=l; j<=r; j++) //checking one by one
+		// {
+		// 	if(find(j)==1)
+		// 	{
+		// 		count++;
+
+		// 	}
+		// }
+		find(l, r);
+		//printf("%d\n", count);
 	}
 
 	return 0;
