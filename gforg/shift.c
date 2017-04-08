@@ -6,7 +6,7 @@
 
 void display(int arr[], int n)
 {
-	for(int i; i<n; i++)
+	for(int i=0; i<n; i++)
 		printf("%d ", arr[i]);
 	printf("\n");
 }
@@ -17,14 +17,32 @@ int main(void)
 	int i, n=sizeof(arr)/sizeof(arr[0]);
 	display(arr, n);
 
-	int x; // xth position to roll in array
+	int x; //by xth position to rotate the array
 	scanf("%d", &x);
 	//assert(x<n && x>0);
 
-	int temp, pos;
-	for(i=0; i<n; i++)
+	int temp, bug, pos, count=0; i=0;
+	while(i<n)
 	{
-		
+		if(i==0)
+			temp=arr[i];
+		pos=i+1;
+		if(pos>n-1)
+		{
+			pos=0;
+			count++;
+		}
+
+		bug=arr[pos];
+		arr[pos]=temp;
+		temp=bug;
+
+		if(count==x)
+			break;
+		if(i==n-1)
+			i=0;
+		else
+			i++;
 	}
 	for(i=0; i<n; i++)
 		printf("%d ", arr[i]);
