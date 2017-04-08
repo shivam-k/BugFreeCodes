@@ -19,7 +19,7 @@ int main(void)
 
 	int x; //by xth position to rotate the array
 	scanf("%d", &x);
-	//assert(x<n && x>0);
+	assert(x<n && x>0);   //to check the x on condition
 
 	int temp, bug, pos, count=0; i=0;
 	while(i<n)

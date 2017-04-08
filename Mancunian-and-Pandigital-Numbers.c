@@ -3,98 +3,55 @@
 #include <math.h>
 #include <string.h>
 
-void display(int arr[], int n)
-{
-	int i;;
-	for(i=1; i<=n; i++)
-		printf("%d ", arr[i]);
-	printf("\n");
-}
-
-void find(int l, int r)
-{
-	int temp=l, countl=0, countr=0, i, arrl[11], arrr[11];
-	while(temp>0) //Calculating digits in l 
-	{
-		countl++;
-		//arrl[countl] = temp%10;
-		temp = temp/10;
-	}
-	temp=r;
-	while(temp>0) //Calculating digits in r 
-	{
-		countr++;
-		//arrr[countr] = temp%10;
-		temp = temp/10;
-	}
-	if(countr<countl)
-	{
-		temp=countr;
-		countr=countl;
-		countl=temp;
-	}
-	for(i=1; i<=countr; i++)
-	{
-		if(i<=countl)
-			arrl[i]=i;
-		arrr[i]=i;
-	}
-	display(arrl, countl);
-	display(arrr, countr);
-	printf("\n");
-	for(i=1; i<=countl; i++)
-	{
-		
-	}
-	// int bug=1;
-	// while(bug>0)  //applying bubble sorting
-	// {
-	// 	bug=0;
-	// 	for(i=1; i<count; i++)
-	// 	{
-	// 		if(arr[i+1]<arr[i])
-	// 		{
-	// 			temp=arr[i+1];
-	// 			arr[i+1]=arr[i];
-	// 			arr[i]=temp;
-	// 			bug=1;
-	// 		}
-	// 	}
-	// }
-
-	// int pass=-1; 
-	// for(i=1; i<=count; i++)
-	// {
-	// 	if(arr[i]==i)
-	// 		pass=1;
-	// 	else
-	// 	{
-	// 		pass=0; break;
-	// 	}
-	// }
-	// return pass;
-}
+int a[2001]={0};
 
 
 int main(void)
 {
-	int q;
+	int q, l, r, i, j, cnt, flag;
 	scanf("%d", &q);
-	for(int i=0; i<q; i++)
+	for(i=1; i<=2000; i++)
 	{
-		int l, r, j, count=0;
-		scanf("%d %d", &l, &r);
-		// for(j=l; j<=r; j++) //checking one by one
-		// {
-		// 	if(find(j)==1)
-		// 	{
-		// 		count++;
-
-		// 	}
-		// }
-		find(l, r);
-		//printf("%d\n", count);
+		int vis[10]={0};
+		cnt=0;
+		j=i;
+		flag=1;
+		while(j>0)
+		{
+			if(vis[j%10]==1)
+			{
+				flag=0;
+				break;
+			}
+			vis[j%10]=1;
+			j/=10;
+			cnt++;
+		}
+		if(flag==1)
+		{
+			for(j=1; j<=cnt; j++)
+			{
+				if(vis[j]==0)
+				{
+					flag=0;
+					break;
+				}
+			}
+		}
+		if(flag==1)
+			a[i]=a[i-1]+1;
+		else
+			a[i]=a[i-1];
 	}
+
+	for(i=1; i<=q; i++)
+	{
+		scanf("%d %d", &l, &r);
+		printf("%d\n", a[r]-a[l-1]);
+	}
+	for(i=1; i<=1000000; i++)
+		printf("%d ", a[i]);
+	printf("\n");
 
 	return 0;
 }
