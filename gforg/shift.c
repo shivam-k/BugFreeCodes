@@ -1,3 +1,7 @@
+/*
+   -- Program to rotate an array by xth position. 
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
