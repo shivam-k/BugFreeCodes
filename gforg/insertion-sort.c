@@ -5,7 +5,7 @@
 
 void display(int arr[], int n)
 {
-	for(int i; i<n; i++)
+	for(int i=0; i<n; i++)
 		printf("%d ", arr[i]);
 	printf("\n");
 }
@@ -17,27 +17,35 @@ int main(void)
 
 	display(arr, n);
 
-	for(int i=1; i<n; i++)  //insertion-sort implementation
+	int i, j, k;
+	for(i=1; i<n; i++)  //insertion-sort implementation
 	{
-		for(int j=0; j<i; j++)
+		for(j=0; j<i; j++)
 		{
-			if(arr[j]<arr[i])
-				continue;
-			else
+			if(arr[i]<arr[j])
 			{
-				int temp;
-				for(int k=j; k<i; k++)
+				int temp, bug, pos; k=j;
+				while(k<=i)
 				{
-					temp=arr[k+1];
-					arr[k+1]=arr[k];
-					if(k==i-1)
-						arr[j]=temp;
+					pos=k+1;
+					if(k==j)
+						temp=arr[j]; 
+					if(k==i)
+						pos=j;
+					bug=arr[pos];
+					arr[pos]=temp;
+					temp=bug;
+					if(k==i)
+						break;
+					else
+						k++;
+
 				}
 			}
 		}
 	}
 
-	for(int i; i<n; i++)
+	for(i=0; i<n; i++)
 		printf("%d ", arr[i]);
 	printf("\n");
 
