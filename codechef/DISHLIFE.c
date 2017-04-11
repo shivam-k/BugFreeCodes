@@ -32,15 +32,15 @@ int main(void)
 					pass=1; break;
 				}
 			}
-			printf("%d\n", count);
+			//printf("%d\n", count);
 			if(count==k && pass==1)
 				break;
 		}
 
-		for(int mn=0; mn<k; mn++)
-			printf("%d ", arr[mn]);
-		printf("\n");
-		
+		// for(int mn=0; mn<k; mn++)
+		// 	printf("%d ", arr[mn]);
+		// printf("\n");
+
 		if(count==k && j==n-1)
 			printf("all\n");	
 		else if(count<k)
