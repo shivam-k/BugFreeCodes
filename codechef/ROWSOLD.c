@@ -9,7 +9,7 @@ int main(void)
 	scanf("%d", &T);
 	while(T--)
 	{
-		char str[100002];
+		char str[100005];
 		scanf("%s", str);
 		int len = strlen(str), i, pass=0, count=0, temp=0;
 		i=0;
