@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int n1=0, n2=0;
 
 void bubble_sort(int arr[], int n)
 {
