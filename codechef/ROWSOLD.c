@@ -5,18 +5,20 @@
  
 int main(void)
 {
-	int T;
-	scanf("%d", &T);
+	long long T;
+	scanf("%lld", &T);
 	while(T--)
 	{
-		char str[100005];
+		char str[1000123];
 		scanf("%s", str);
-		int len = strlen(str), pass=0, count=0;
+		long long len = strlen(str), i, pass=0, count=0, temp=0;
+		i=0;
 		if(len==1)
+		{
 			printf("0\n");
+		}
 		else
 		{
-			int j=0, i=0, arr[100002]={-1}, k;
 			while(1)
 			{
 				if(i==0)
@@ -31,19 +33,6 @@ int main(void)
 						count++; i++;
 						pass=1;
 					}
-					arr[j]=i; j++;
-				}
-				else if(arr[0]!=-1)
-				{	
-					int k;
-					for(k=0; k<j; k++)
-					{
-						if(str[arr[k]+1]=='0')
-						{
-							i=arr[k];
-							j=0; break;
-						}
-					}
 				}
 				else
 					i++;
@@ -55,7 +44,7 @@ int main(void)
 						i=0;
 				}
 			}
-			printf("%d\n", count);
+			printf("%lld\n", count);
 		}
  
 	}
