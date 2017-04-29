@@ -3,43 +3,39 @@
 #include <math.h>
 #include <string.h>
 
-int col[10];
-int m=0, n=1;
-void pan(int l)
-{
-	int i;
-	if(l==1)
-		return;
-	else
-		pan(--l);
-	printf("%d\n", l);
-	col[m]=l;
-	l++;
-}
 
-int digit(int x)
-{
-	int temp=x, i=0;
-	while(temp>0)
-	{
-		temp=temp/10;
-		i++;
-	}
-	return i;
-}
+// int digit(int x)
+// {
+// 	int temp=x, i=0;
+// 	while(temp>0)
+// 	{
+// 		temp=temp/10;
+// 		i++;
+// 	}
+// 	return i;
+// }
 
 int main(void)
 {
-	int q;
-	scanf("%d", &q);
-	while(q--)
+	int n, m, i, j, sum=0, temp, arr[10];
+	scanf("%d", &n);  //between 1 nad 9
+	for(i=0; i<n; i++)
+		scanf("%d", &arr[i]);
+	for(i=0; i<n; i++)
 	{
-		int l, r, i;
-		scanf("%d%d", &l, &r);
-		int nl = digit(l); 
-		int nr = digit(r);
-		//printf("%d %d\n", nl, nr);
-		pan(l+1);
+		j=0;
+		sum=sum+arr[i];
+		printf("last digint- %d\n", arr[i]);
+		while(j<i)
+		{
+			printf("two sum- %d\n", arr[i]+arr[j]);
+			if(j!=0)
+				temp=temp+arr[j-1];
+			else
+				temp=0;
+			printf("mid sum- %d\n", sum-temp);
+			j++;
+		}
 	}
 
 	return 0;

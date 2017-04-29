@@ -4,32 +4,32 @@
 using namespace std;
 
 
-void bubble_sort(long long int arr[], long long int n)
+void selection_sort(long long int arr[], long long int n)
 {
-	long long int pass=1, i, temp;
-	while(pass>0)
+	for(int i=0; i<n; i++)
 	{
-		pass=0;
-		for(i=0; i<n-1; i++)
+		int min=i, temp;
+		for(int j=i+1; j<n; j++)
 		{
-			if(arr[i+1]>arr[i])
-			{
-				temp=arr[i];
-				arr[i]=arr[i+1];
-				arr[i+1]=temp;
-				pass=1;
-			}
+			if(arr[j]>arr[min])
+				min=j;
+		}
+		if(min!=i)
+		{
+			temp=arr[i];
+			arr[i]=arr[min];
+			arr[min]=temp;
 		}
 	}
 }
 
-void display(long long int arr[], long long int n)
-{
-	long long int i;
-	for(i=0; i<n; i++)
-		cout<<arr[i]<<" ";
-	cout<<"\n";
-}
+// void display(long long int arr[], long long int n)
+// {
+// 	long long int i;
+// 	for(i=0; i<n; i++)
+// 		cout<<arr[i]<<" ";
+// 	cout<<"\n";
+// }
 
 int main(void)
 {
@@ -38,12 +38,12 @@ int main(void)
 	while(t--)
 	{
 		long long int n, k, e, i, num, j;
-		long long int m;
+		long long int m, tot, sergey, snum=0;
 		cin>>n>>k>>e>>m;
-		long long int arr[n-1];
+		long long int arr[n+5];
 		for(i=0; i<n-1; i++)
 		{
-			long long int tot=0;
+			tot=0;
 			for(j=1; j<=e; j++)
 			{
 				cin>>num;
@@ -52,11 +52,11 @@ int main(void)
 			arr[i]=tot;
 		}
 		
-		display(arr, n-1);
-		bubble_sort(arr, n-1);
-		display(arr, n-1);
+		//display(arr, n-1);
+		selection_sort(arr, n-1);
+		//display(arr, n-1);
 	
-		long long int sergey, snum=0; 
+		snum=0; 
 		for(i=1; i<e; i++)
 		{
 			cin>>sergey;
@@ -65,10 +65,16 @@ int main(void)
 
 		//cout<<snum<<"\n";
 
-		if(arr[k-1]-snum>10)
-			cout<<"Impossible"<<"\n";
+		if(arr[k-1]-snum>=10)
+			cout<<"Impossible\n";
 		else
-			cout<<(arr[k-1]-snum)+1<<"\n";
+		{
+			long long int temp=arr[k-1]-snum;
+			if(temp<0)
+				cout<<0<<"\n";
+			else
+				cout<<temp+1<<"\n";
+		}
 			
 	}
 
